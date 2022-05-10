@@ -16,3 +16,23 @@
   border: solid;
   border-color: red;
 }
+
+.contenedor {
+  display: grid;
+  grid-template-columns: repeat();
+  grid-template-rows: repeat();
+  margin: 0 auto;
+  width: 80%;
+  height: 80vh;
+  background-color: rgb(138, 236, 243);
+  border: thin solid blueviolet;
+}
+
+.celda {
+  height: auto;
+  width: auto;
+}
+
+.celda:hover {
+  background-color: red;
+}

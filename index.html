@@ -27,6 +27,14 @@ Poner un botón que al apretarse ejecute una función que cree la grid con i can
 (Podria utilizar un for loop donde cree i*i cantidad de divs)
 
   -->
+
+  <button id="create-divs">Crear Divs</button>
+
+  <div class="contenedor">
+    <div class="contenido">contenido</div>
+  </div>
+
+  <hr>
   <div class="container grid-explicit">
     <div class="indiv"></div>
     <div class="indiv"></div>
@@ -133,6 +141,29 @@ Poner un botón que al apretarse ejecute una función que cree la grid con i can
 
 
   <script>
+    const contenedor = document.querySelector('.contenedor');
+
+    let contenido = document.querySelector('.contenido')
+
+    const createDivs = document.querySelector('#create-divs');
+
+    createDivs.addEventListener('click', () => createGrid())
+
+
+    function createGrid(num) {
+      let number = prompt("Ingrese el numero de columas y filas");
+
+      num = number * number;
+      var codeStringed = "<div class='celda'></div>";
+
+      for (let i = 0; i < num; i++) {
+        codeStringed += "<div class='celda'></div>";
+      }
+      contenedor.innerHTML = codeStringed;
+      contenedor.setAttribute('style', `grid-template-columns: repeat(${number}, auto); grid-template-rows: repeat(${number}, auto);`);
+    }
+
+
 
   </script>
 
