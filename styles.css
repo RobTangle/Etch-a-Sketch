@@ -1,0 +1,18 @@
+.container {
+  margin: 0 auto;
+  width: 80%;
+  height: 80vh;
+  background-color: grey;
+  border: thin solid blueviolet;
+}
+
+.grid-explicit {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  grid-template-rows: repeat(5, auto);
+}
+
+.indiv:hover {
+  border: solid;
+  border-color: red;
+}
