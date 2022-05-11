@@ -28,13 +28,15 @@ Poner un botón que al apretarse ejecute una función que cree la grid con i can
 
   -->
 
-  <button id="create-divs">Crear Divs</button>
+  <button id="btn-create-divs">Crear Divs</button>
+  <button class="clear-grid" onclick="clearGrid()">Clear Grid</button>
 
   <div class="contenedor">
-    <div class="contenido">contenido</div>
+    <div class="contenido"></div>
   </div>
-
   <hr>
+  <br>
+  <button class="clickear" onclick="explicitColor()">Press to execute explicitColor()</button>
   <div class="container grid-explicit">
     <div class="indiv"></div>
     <div class="indiv"></div>
@@ -72,97 +74,84 @@ Poner un botón que al apretarse ejecute una función que cree la grid con i can
     <div class="indiv"></div>
     <div class="indiv"></div>
     <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
-    <div class="indiv"></div>
+
   </div>
 
 
 
   <script>
     const contenedor = document.querySelector('.contenedor');
-
-    let contenido = document.querySelector('.contenido')
-
-    const createDivs = document.querySelector('#create-divs');
+    const contenido = document.querySelector('.contenido')
+    const createDivs = document.querySelector('#btn-create-divs');
+    const gridExplicit = document.querySelectorAll('.grid-explicit>.indiv');
 
     createDivs.addEventListener('click', () => createGrid())
 
-
+    //////funciones:////////////////
     function createGrid(num) {
       let number = prompt("Ingrese el numero de columas y filas");
 
       num = number * number;
-      var codeStringed = "<div class='celda'></div>";
+      var codeStringed = "";
 
       for (let i = 0; i < num; i++) {
-        codeStringed += "<div class='celda'></div>";
+        codeStringed += `<div class='celda${i}'></div>`;
       }
-      contenedor.innerHTML = codeStringed;
+      contenedor.innerHTML = codeStringed;  //reemplazar innerHTML *RISKS*
       contenedor.setAttribute('style', `grid-template-columns: repeat(${number}, auto); grid-template-rows: repeat(${number}, auto);`);
+
+      let gridPixels = contenedor.querySelectorAll('div');
+      gridPixels.forEach(gridPixel => {
+        gridPixel.addEventListener('mouseover', changeColorPixel)
+      });
     }
 
+
+    function changeColorPixel() {
+      this.style.backgroundColor = 'green';
+    }
+
+    function clearGrid() {
+      contenedor.innerHTML = ""
+      contenedor.removeAttribute('style')
+    }
+
+    function explicitColor(color) {
+      gridExplicit.forEach(gridEx =>
+        gridEx.addEventListener('mousedown', changeColorPixel))
+    }
+
+    //posible solución????:
+    //mousedown hace que se ejecute la función mouseover. Por lo que mouseover
+    // solo funciona si mousedown se está ejecutando.
+
+    ////////////fin funciones////////
+
+
+
+    ////////////////////////////pruebas
+    let celda = document.querySelector('.celda');
+
+    function changeColor(color) {
+      pruebaArrow.style.backgroundColor = 'red';
+
+      // celda.setAttribute('style', 'background-color: yellow;');
+      // prueba.setProperty('border', '5px solid green');
+    }
+
+
+  // function createGrid(num) {
+  //   let number = prompt("Ingrese el numero de columas y filas");
+
+  //   num = number * number;
+  //   var codeStringed = "<div class='celda' onmouseover='changeColor()'></div>";
+
+  //   for (let i = 0; i < num; i++) {
+  //     codeStringed += "<div class='celda' onmouseover='changeColor()'></div>";
+  //   }
+  //   contenedor.innerHTML = codeStringed;
+  //   contenedor.setAttribute('style', `grid-template-columns: repeat(${number}, auto); grid-template-rows: repeat(${number}, auto);`);
+  // }
 
 
   </script>

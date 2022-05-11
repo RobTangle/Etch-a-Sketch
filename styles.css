@@ -1,6 +1,10 @@
+h1 {
+  text-align: center;
+}
+
 .container {
   margin: 0 auto;
-  width: 80%;
+  width: 50%;
   height: 80vh;
   background-color: grey;
   border: thin solid blueviolet;
@@ -22,9 +26,10 @@
   grid-template-columns: repeat();
   grid-template-rows: repeat();
   margin: 0 auto;
-  width: 80%;
-  height: 80vh;
-  background-color: rgb(138, 236, 243);
+  width: 600px;
+  height: 600px;
+
+  /* background-color: rgb(138, 236, 243); */
   border: thin solid blueviolet;
 }
 
@@ -35,4 +40,9 @@
 
 .celda:hover {
   background-color: red;
+}
+
+.paintBlack {
+  color: black;
+  background-color: yellow;
 }
